@@ -1,0 +1,29 @@
+/* 1. Element Selector (0,0,1) */
+p { color: gray; }
+
+/* 2. Pseudo-element (0,0,2) */
+p::first-line { color: silver; }
+
+/* 3. Class Selector (0,1,0) */
+.text { color: blue; }
+
+/* 4. Attribute Selector (0,1,0) */
+[id="demo"] { color: purple; }
+
+/* 5. Hai Class kết hợp (0,2,0) */
+.text.highlight { color: green; }
+
+/* 6. Thẻ + Class (0,2,1) - Sử dụng lặp lại class để tăng điểm */
+p.text.highlight { color: orange; }
+
+/* 7. ID Selector (1,0,0) */
+#demo { color: brown; }
+
+/* 8. ID + Thẻ (1,0,1) */
+p#demo { color: navy; }
+
+/* 9. ID + Class (1,1,0) */
+#demo.text { color: teal; }
+
+/* 10. ID + 2 Class (1,2,0) */
+#demo.text.highlight { color: red; }
