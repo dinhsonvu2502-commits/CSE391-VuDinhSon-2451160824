@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Multimedia Sản Phẩm</title>
+</head>
+<body>
+
+    <h1>Giới thiệu Sản phẩm Công nghệ</h1>
+
+    <!-- Nhúng SVG inline (Logo đơn giản hình tròn/vuông) -->
+    <header>
+        <svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <rect x="10" y="10" width="80" height="80" fill="#4CAF50" />
+            <circle cx="50" cy="50" r="30" fill="white" />
+        </svg>
+        <span>Logo Công Ty</span>
+    </header>
+
+    <main>
+        <!-- Ít nhất 3 ảnh sản phẩm dùng figure + figcaption, loading="lazy", alt mô tả đúng -->
+        <!-- Ảnh responsive: max-width: 100%; height: auto; (inline style) -->
+        <section id="product-images">
+            <h2>Hình ảnh sản phẩm</h2>
+            
+            <figure>
+                <img src="https://placeholder.co/600x400" 
+                     alt="Mặt trước điện thoại iPhone 16 màu Titan" 
+                     loading="lazy" 
+                     style="max-width: 100%; height: auto;">
+                <figcaption>Mặt trước sang trọng của iPhone 16</figcaption>
+            </figure>
+
+            <figure>
+                <img src="https://placeholder.co/600x400" 
+                     alt="Cụm camera ba ống kính chuyên nghiệp" 
+                     loading="lazy" 
+                     style="max-width: 100%; height: auto;">
+                <figcaption>Hệ thống camera tân tiến</figcaption>
+            </figure>
+
+            <figure>
+                <img src="https://placeholder.co/600x400" 
+                     alt="Cạnh bên máy với nút Action mới" 
+                     loading="lazy" 
+                     style="max-width: 100%; height: auto;">
+                <figcaption>Nút bấm Action tiện lợi</figcaption>
+            </figure>
+        </section>
+
+        <hr>
+
+        <!-- 1 video nhúng YouTube (dùng iframe) -->
+        <section id="youtube-video">
+            <h2>Video đánh giá từ YouTube</h2>
+            <iframe width="560" height="315" 
+                    src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                    title="YouTube video player" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+            </iframe>
+        </section>
+
+        <hr>
+
+        <!-- 1 thẻ video với controls, poster, ít nhất 2 source (mp4 + webm) -->
+        <section id="local-video">
+            <h2>Video giới thiệu tính năng</h2>
+            <video controls poster="https://placeholder.co/800x450" width="600">
+                <source src="intro-video.mp4" type="video/mp4">
+                <source src="intro-video.webm" type="video/webm">
+                Trình duyệt của bạn không hỗ trợ thẻ video.
+            </video>
+        </section>
+
+        <hr>
+
+        <!-- 1 thẻ audio (nhạc nền giới thiệu) -->
+        <section id="background-music">
+            <h2>Nhạc nền giới thiệu</h2>
+            <audio controls>
+                <source src="background-music.mp3" type="audio/mpeg">
+                <source src="background-music.ogg" type="audio/ogg">
+                Trình duyệt của bạn không hỗ trợ thẻ audio.
+            </audio>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Trang Multimedia Sản Phẩm</p>
+    </footer>
+
+</body>
+</html>
