@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>ShopVN — Component Architecture</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; background-color: #f8f9fa; }
+        .navbar { background: #2c3e50; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; color: white; }
+        .hero { background: linear-gradient(135deg, #3498db, #2c3e50); color: white; text-align: center; padding: 4rem 2rem; }
+        .products { padding: 3rem 2rem; max-width: 1100px; margin: 0 auto; }
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 1.5rem; }
+        .product-card { border: 1px solid #ddd; border-radius: 12px; padding: 1rem; background: white; transition: 0.3s; }
+        .product-card:hover { transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        footer { background: #2c3e50; color: white; text-align: center; padding: 1.5rem; margin-top: 2rem; }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        // 1. Component Navbar
+        function Navbar({ logo, links }) {
+            return (
+                <nav className="navbar">
+                    <a href="/" style={{color: '#3498db', fontWeight: 'bold', textDecoration: 'none', fontSize: '1.5rem'}}>{logo}</a>
+                    <div style={{display: 'flex', gap: '1rem'}}>
+                        {links.map((l, i) => <a key={i} href={l.href} style={{color:'white', textDecoration:'none'}}>{l.label}</a>)}
+                    </div>
+                </nav>
+            );
+        }
+
+        // 2. Component Hero
+        function Hero({ title, subtitle, buttonText }) {
+            return (
+                <section className="hero">
+                    <h1>{title}</h1>
+                    <p style={{opacity: '0.8', margin: '10px 0'}}>{subtitle}</p>
+                    <button style={{marginTop:'1rem', padding:'10px 25px', borderRadius:'20px', border:'none', cursor:'pointer'}} onClick={()=>alert('Mua ngay!')}>{buttonText}</button>
+                </section>
+            );
+        }
+
+        // 3. Component ProductCard
+        function ProductCard({ image, name, price }) {
+            return (
+                <div className="product-card">
+                    <img src={image} alt={name} style={{width:'100%', height:'150px', objectFit:'cover', borderRadius:'8px'}} />
+                    <h3 style={{margin: '10px 0'}}>{name}</h3>
+                    <p style={{color:'red', fontWeight:'bold', marginBottom:'10px'}}>{price}</p>
+                    <button style={{width:'100%', padding:'8px', cursor:'pointer'}}>Thêm vào giỏ</button>
+                </div>
+            );
+        }
+
+        // 4. Component ProductGrid
+        function ProductGrid({ products, title }) {
+            return (
+                <section className="products">
+                    <h2 style={{textAlign:'center', marginBottom:'2rem'}}>{title}</h2>
+                    <div className="product-grid">
+                        {products.map(p => <ProductCard key={p.id} {...p} />)}
+                    </div>
+                </section>
+            );
+        }
+
+        // 5. Component Footer
+        function Footer({ text }) {
+            return <footer>{text}</footer>;
+        }
+
+        // 6. Component App (Root)
+        function App() {
+            const products = [
+                { id: 1, name: 'Áo thun nam', price: '250.000đ', image: 'https://picsum.photos/300/200?random=1' },
+                { id: 2, name: 'Quần jean nữ', price: '450.000đ', image: 'https://picsum.photos/300/200?random=2' },
+                { id: 3, name: 'Giày sneaker', price: '890.000đ', image: 'https://picsum.photos/300/200?random=3' }
+            ];
+            
+            return (
+                <div>
+                    <Navbar logo="ShopVN" links={[{label:'Giới thiệu', href:'#'}, {label:'Sản phẩm', href:'#'}]} />
+                    <Hero title="Chào mừng đến với ShopVN" subtitle="Nơi mua sắm trực tuyến uy tín" buttonText="Mua ngay" />
+                    <ProductGrid title="Sản phẩm nổi bật" products={products} />
+                    <Footer text="© 2026 ShopVN. All rights reserved." />
+                </div>
+            );
+        }
+
+       const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>

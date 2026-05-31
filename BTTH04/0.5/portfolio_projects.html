@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Portfolio — Project Cards</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 2rem auto; background-color: #f9f9f9; padding: 0 1rem; }
+        h1 { color: #2c3e50; text-align: center; margin-bottom: 2rem; }
+        .project-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.2rem; margin-top: 1.5rem; }
+        .project-card { border: 1px solid #ddd; border-radius: 10px; overflow: hidden;
+                        transition: transform 0.3s, box-shadow 0.3s; background: white; position: relative; }
+        .project-card:hover { transform: translateY(-4px); box-shadow: 0 6px 20px rgba(0,0,0,0.1); }
+        .project-card img { width: 100%; height: 150px; object-fit: cover; display: block; }
+        .project-card .info { padding: 0.8rem; }
+        .project-card h3 { font-size: 1rem; margin: 0 0 0.4rem 0; color: #2c3e50; }
+        .project-card .category { font-size: 12px; padding: 2px 8px; border-radius: 10px;
+                                   color: white; display: inline-block; margin-bottom: 0.6rem; font-weight: bold; }
+        .cat-web { background: #3498db; }
+        .cat-mobile { background: #27ae60; }
+        .cat-design { background: #9b59b6; }
+        .project-card .desc { font-size: 13px; color: #666; margin: 0 0 0.8rem 0; height: 36px; overflow: hidden; }
+        .project-card .tags { display: flex; gap: 4px; flex-wrap: wrap; margin-top: 0.5rem; }
+        .project-card .tag { font-size: 11px; background: #f0f0f0; padding: 2px 8px; border-radius: 10px; color: #555; }
+        .project-card .featured { position: absolute; top: 8px; right: 8px; background: #e74c3c;
+                                   color: white; font-size: 11px; padding: 4px 8px; border-radius: 10px; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.2); }
+        .empty-state { text-align: center; padding: 3rem; color: #999; background: white; border-radius: 10px; border: 1px dashed #ccc; }
+        .stats { display: flex; gap: 1rem; margin-top: 2rem; justify-content: center; }
+        .stats span { padding: 8px 16px; background: #ecf0f1; border-radius: 8px; font-size: 14px; font-weight: bold; color: #34495e; }
+    </style>
+</head>
+<body>
+    <h1>🛠️ Dự án của Minh</h1>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const projects = [
+            { id: 1, title: 'Portfolio Website', category: 'web',
+              image: 'https://picsum.photos/300/200?random=1',
+              description: 'Trang cá nhân xây dựng bằng HTML/CSS',
+              tags: ['HTML', 'CSS'], featured: true },
+            { id: 2, title: 'Todo App', category: 'web',
+              image: 'https://picsum.photos/300/200?random=2',
+              description: 'Ứng dụng quản lý công việc hàng ngày',
+              tags: ['JavaScript', 'DOM'], featured: false },
+            { id: 3, title: 'Weather App', category: 'mobile',
+              image: 'https://picsum.photos/300/200?random=3',
+              description: 'Xem thời tiết chuẩn xác theo vị trí định vị',
+              tags: ['React', 'API'], featured: false },
+            { id: 4, title: 'Poster Design', category: 'design',
+              image: 'https://picsum.photos/300/200?random=4',
+              description: 'Thiết kế poster truyền thông cho sự kiện',
+              tags: ['Figma', 'Photoshop'], featured: false },
+        ];
+
+        // ============================================
+        // TODO 1: Component CategoryBadge
+        // ============================================
+        function CategoryBadge({ category }) {
+            // Xác định class CSS bằng biểu thức tam phân lồng nhau dựa trên giá trị category
+            const catClass = category === 'web' ? 'cat-web' 
+                           : category === 'mobile' ? 'cat-mobile' 
+                           : category === 'design' ? 'cat-design' : '';
+                           
+            // Format viết hoa chữ cái đầu (Ví dụ: 'web' -> 'Web')
+            const label = category.charAt(0).toUpperCase() + category.slice(1);
+
+            return <span className={`category ${catClass}`}>{label}</span>;
+        }
+
+        // ============================================
+        // TODO 2: Component ProjectCard
+        // ============================================
+        function ProjectCard({ title, category, image, description, tags, featured }) {
+            return (
+                <div className="project-card">
+                    <img src={image} alt={title} />
+                    
+                    {/* Conditional Rendering: Sử dụng toán tử && chỉ hiển thị badge khi featured là true */}
+                    {featured && <span className="featured">⭐ Nổi bật</span>}
+                    
+                    <div className="info">
+                        <CategoryBadge category={category} />
+                        <h3>{title}</h3>
+                        <p className="desc">{description}</p>
+                        <div className="tags">
+                            {tags.map(tag => (
+                                <span key={tag} className="tag">{tag}</span>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            );
+        }
+
+        // ============================================
+        // TODO 3: Component ProjectList
+        // ============================================
+        function ProjectList({ projects }) {
+            // Xử lý điều kiện nếu danh sách rỗng (Empty State)
+            if (!projects || projects.length === 0) {
+                return (
+                    <div className="empty-state">
+                        <h3>📭 Chưa có dự án nào được đăng tải</h3>
+                        <p>Vui lòng quay lại sau hoặc kiểm tra cấu trúc bộ lọc.</p>
+                    </div>
+                );
+            }
+
+            // Tính toán nhanh dữ liệu thống kê
+            const totalProjects = projects.length;
+            const featuredCount = projects.filter(p => p.featured).length;
+
+            return (
+                <div>
+                    {/* Khối hiển thị thống kê số lượng */}
+                    <div class="stats">
+                        <span>Tổng số dự án: {totalProjects}</span>
+                        <span>Dự án nổi bật: {featuredCount}</span>
+                    </div>
+
+                    {/* Khối hiển thị Grid các Card sản phẩm */}
+                    <div className="project-grid">
+                        {projects.map(project => (
+                            <ProjectCard 
+                                key={project.id} // Luôn luôn thiết lập key duy nhất khi render danh sách trong React
+                                title={project.title}
+                                category={project.category}
+                                image={project.image}
+                                description={project.description}
+                                tags={project.tags}
+                                featured={project.featured}
+                            />
+                        ))}
+                    </div>
+                </div>
+            );
+        }
+
+        // ============================================
+        // TODO 4: Component App
+        // ============================================
+        function App() {
+            return (
+                <div style={{ paddingBottom: '3rem' }}>
+                    <ProjectList projects={projects} />
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
