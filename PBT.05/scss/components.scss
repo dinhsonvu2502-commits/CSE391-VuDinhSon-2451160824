@@ -1,0 +1,10 @@
+.card {
+    background: $card-bg;
+    padding: $spacing;
+    border-radius: $border-radius;
+    @include card-shadow;
+
+    .card-title { color: $primary-color; font-weight: bold; }
+    
+    &:hover { transform: translateY(-5px); }
+}

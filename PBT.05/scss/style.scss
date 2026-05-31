@@ -1,0 +1,19 @@
+@import 'variables';
+@import 'mixins';
+@import 'components';
+
+body { font-family: sans-serif; }
+
+.product-grid {
+    display: grid;
+    gap: $spacing;
+    grid-template-columns: 1fr; // Mobile
+
+    @include respond-to($breakpoint-tablet) {
+        grid-template-columns: repeat(2, 1fr); // Tablet
+    }
+
+    @include respond-to($breakpoint-desktop) {
+        grid-template-columns: repeat(4, 1fr); // Desktop
+    }
+}
