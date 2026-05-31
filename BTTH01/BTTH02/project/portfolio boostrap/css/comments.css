@@ -1,0 +1,211 @@
+/* ── Khu vực bình luận (Comments Area) ── */
+.comments-area {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.comments-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-dark);
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* ── Danh sách bình luận ── */
+.comment-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 3rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.comment-item {
+    display: flex;
+    gap: 1.2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.comment-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+/* Phản hồi bình luận (Reply comment) lùi vào trong */
+.comment-item.comment-reply {
+    margin-left: 3.5rem;
+    padding-top: 1rem;
+    border-top: 1px dashed rgba(0, 0, 0, 0.05);
+}
+
+/* Ảnh đại diện (Avatar) */
+.comment-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+    border: 2px solid #ffffff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Nội dung bình luận */
+.comment-content {
+    flex-grow: 1;
+}
+
+.comment-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.comment-author {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-dark);
+    text-decoration: none;
+}
+
+.comment-date {
+    font-size: 0.85rem;
+    color: var(--color-text);
+    opacity: 0.6;
+}
+
+.comment-text {
+    font-size: 0.95rem;
+    color: var(--color-text);
+    line-height: 1.6;
+    margin-bottom: 0.5rem;
+}
+
+/* Nút trả lời (Reply Button) */
+.comment-reply-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+}
+
+.comment-reply-btn:hover {
+    opacity: 0.8;
+}
+
+/* ── Form gửi bình luận (Comment Form) ── */
+.comment-respond {
+    background: #ffffff;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.reply-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--color-dark);
+    margin-bottom: 1.5rem;
+}
+
+.comment-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.comment-form .row {
+    display: flex;
+    gap: 1rem;
+}
+
+.comment-form .col {
+    flex: 1;
+}
+
+.comment-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.comment-form-group label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-dark);
+}
+
+.comment-form-group input,
+.comment-form-group textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    color: var(--color-text);
+    background-color: #ffffff;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.comment-form-group input:focus,
+.comment-form-group textarea:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+.comment-form-group textarea {
+    height: 120px;
+    resize: vertical;
+}
+
+/* Nút gửi bình luận */
+.comment-submit-btn {
+    align-self: flex-start;
+    background: var(--color-primary);
+    color: #ffffff;
+    border: none;
+    padding: 0.7rem 1.8rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.comment-submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(99, 102, 241, 0.2);
+}
+
+/* Responsive cho thiết bị di động */
+@media (max-width: 768px) {
+    .comment-item.comment-reply {
+        margin-left: 1.5rem;
+    }
+    
+    .comment-form .row {
+        flex-direction: column;
+        gap: 1.2rem;
+    }
+    
+    .comment-respond {
+        padding: 1.5rem;
+    }
+
+    .comment-submit-btn {
+        width: 100%;
+        text-align: center;
+    }
+}
