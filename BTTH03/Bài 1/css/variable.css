@@ -1,0 +1,10 @@
+:root {
+    --primary-color: #ff6b00;       
+    --primary-hover: #e05e00;       
+    --bg-main: #f8f9fa;             
+    --bg-card: #ffffff;             
+    --text-main: #212529;           
+    --text-muted: #6c757d;          
+    --border-color: #dee2e6;
+    --transition-smooth: all 0.3s ease;
+}

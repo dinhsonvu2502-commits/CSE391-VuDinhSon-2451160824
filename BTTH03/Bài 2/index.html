@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 2: Quản lý Công việc</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="bg-light">
+
+    <div class="container py-5">
+        <h1 class="text-center mb-4 fw-bold text-success">Danh Sách Công Việc Cá Nhân</h1>
+
+        <div class="row g-3 mb-4">
+            <div class="col-4">
+                <div class="card p-3 text-center">
+                    <span class="text-muted small">Tổng công việc</span>
+                    <h4 class="mb-0 fw-bold" id="totalTasks">0</h4>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="card p-3 text-center">
+                    <span class="text-success small">Đã hoàn thành</span>
+                    <h4 class="mb-0 fw-bold text-success" id="completedTasks">0</h4>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="card p-3 text-center">
+                    <span class="text-danger small">Chưa hoàn thành</span>
+                    <h4 class="mb-0 fw-bold text-danger" id="pendingTasks">0</h4>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <button class="btn btn-success" id="btnOpenTaskModal">
+                <i class="bi bi-patch-plus me-2"></i>Thêm công việc
+            </button>
+        </div>
+
+        <div class="row g-3" id="taskContainer"></div>
+    </div>
+
+    <div class="modal fade" id="taskModal" data-bs-backdrop="static" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold" id="taskModalTitle">Thêm Công Việc</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="taskForm" novalidate>
+                        <input type="hidden" id="taskEditIndex">
+                        <div class="mb-3">
+                            <label class="form-label small fw-semibold">Tiêu đề công việc *</label>
+                            <input type="text" id="taskTitle" class="form-control" required>
+                            <div class="invalid-feedback">Tiêu đề không được để trống.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label small fw-semibold">Mô tả ngắn</label>
+                            <textarea id="taskDesc" class="form-control" rows="2"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label small fw-semibold">Hạn hoàn thành *</label>
+                            <input type="date" id="taskDeadline" class="form-control" required>
+                            <div class="invalid-feedback">Vui lòng chọn hạn hoàn thành.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label small fw-semibold">Mức ưu tiên *</label>
+                            <select id="taskPriority" class="form-select">
+                                <option value="Thấp">Thấp</option>
+                                <option value="Trung bình" selected>Trung bình</option>
+                                <option value="Cao">Cao</option>
+                            </select>
+                        </div>
+                        <div class="text-end">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                            <button type="submit" class="btn btn-success">Lưu công việc</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
