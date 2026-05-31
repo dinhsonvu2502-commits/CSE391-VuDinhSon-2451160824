@@ -1,0 +1,113 @@
+.about {
+    padding: 100px 2rem;
+    background-color: #ffffff; 
+}
+
+.about-container {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 5rem;
+}
+
+.about-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.about-box {
+    width: 100%;
+    max-width: 400px;
+    background: var(--color-light);
+    border-radius: 16px;
+    padding: 2.5rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+    border: 1px solid rgba(99, 102, 241, 0.08);
+}
+
+.about-content {
+    flex: 1.2;
+}
+
+.about-content .sub-title {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--color-primary);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.about-content h2 {
+    font-size: 2.5rem;
+    color: var(--color-dark);
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+}
+
+.about-content p {
+    color: var(--color-text);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+}
+
+.about-skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+}
+
+.skill-tag {
+    background-color: var(--color-light);
+    color: var(--color-dark);
+    padding: 0.6rem 1.2rem;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.25s ease;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.skill-tag:hover {
+    background-color: var(--color-primary);
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(99, 102, 241, 0.2);
+    border-color: var(--color-primary);
+}
+
+
+@media (max-width: 991px) {
+    .about-container {
+        gap: 3rem;
+    }
+    
+    .about-content h2 {
+        font-size: 2.1rem;
+    }
+}
+
+@media (max-width: 767px) {
+    .about {
+        padding: 60px 1rem;
+    }
+
+    .about-container {
+        flex-direction: column; 
+        gap: 2.5rem;
+        text-align: center;
+    }
+
+    .about-box {
+        max-width: 100%;
+    }
+
+    .about-skills {
+        justify-content: center; /* Căn giữa các thẻ kỹ năng trên mobile */
+    }
+}
